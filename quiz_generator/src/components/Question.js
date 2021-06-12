@@ -1,9 +1,22 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Form, Row, Col, Button } from 'react-bootstrap'
 import { useHistory } from 'react-router'
+import { counterContext } from "../App"
 
 
 export default function Question() {
+
+    const [questionCounter, setquestionCounter, choiceCounter, setchoiceCounter] = useContext(counterContext)
+
+
+    let questionData = {
+        "questionText": "",
+        "type": "",
+        "points": "",
+        "choice": [
+
+        ]
+    }
     const history = useHistory()
     return (
         <div className="border p-3">
