@@ -1,8 +1,10 @@
 import React from 'react'
 import { Form, Row, Col, Button } from 'react-bootstrap'
+import { useHistory } from 'react-router'
 
 
 export default function Question() {
+    const history = useHistory()
     return (
         <div className="border p-3">
             <h1>Question</h1>
@@ -17,11 +19,13 @@ export default function Question() {
                     <Col>
                         <Form.Label>Type</Form.Label>
                         <Form.Check
+                            name="Choice"
                             type="radio"
                             label="Single Choice"
 
                         />
                         <Form.Check
+                            name="Choice"
                             type="radio"
                             label="Multiple Choice"
 
@@ -35,11 +39,19 @@ export default function Question() {
             </Form>
             <div className="border   d-flex justify-content-center align-items-center" style={{ height: "500px" }}>
 
-                <Button primary >Add Choice </Button>
+                <Button primary onClick={() => { history.push("/Choice") }} >Add Choice </Button>
 
 
 
 
+
+            </div>
+            <div className="d-flex justify-content-end p-3">
+
+                <Button variant="light" className="mx-3 border" onClick={() => { history.push("/QuizCreator") }}> Cancel</Button>
+
+
+                <Button primary onClick={() => { history.push("/QuizCreator") }} >Create</Button>
 
             </div>
 

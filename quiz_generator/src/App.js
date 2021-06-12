@@ -8,29 +8,38 @@ import { BrowserRouter, Switch, Route, Link } from "react-router-dom"
 import { createContext, useState } from "react"
 import Question from "./components/Question"
 import Choice from "./components/Choice"
+import QuizCreator from './components/QuizCreator';
 
 
 function App() {
 
+
   return (
-    <Container>
-      <h1 className="text-center">Create a Quiz</h1>
+    <Container className="w-50 my-3">
+
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/">
 
 
-      <Choice />
+            <MainPage />
+          </Route>
+          <Route path="/QuizCreator">
+            <QuizCreator />
+          </Route>
+          <Route path="/Choice">
+            <Choice />
+          </Route>
+          <Route path="/Question">
+            <Question />
+          </Route>
+        </Switch>
+      </BrowserRouter>
+
+
 
     </Container >
-    // <BrowserRouter>
-    //   <Switch>
-    //    <Route exact path="/">
-    //         <Link to="/" >Options</Link>
-    //         <h1>i am home page</h1>
-    //     </Route>
-    //     <Route path="/Options">
-    //      <Options />
-    //     </Route>
-    //   </Switch>
-    // </BrowserRouter>
+
   );
 }
 
