@@ -12,14 +12,13 @@ import Choice from "./components/Choice"
 import QuizCreator from './components/QuizCreator';
 
 export const counterContext = React.createContext();
-
+export const toogleData = React.createContext();
 function App() {
   const [questionCounter, setquestionCounter] = useState(0)
   const [choiceCounter, setchoiceCounter] = useState(0)
-
-
-
-  let data = {
+  const [toogleQuestion, settoogleQuestion] = useState(true)
+  const [toogleChoice, settoogleChoice] = useState(true)
+  const [quizData, setquizData] = useState({
     "title": "",
     "totalPoints": "",
     "timeAllowed": "",
@@ -27,8 +26,21 @@ function App() {
     "question": [
 
 
+      {
+        "choice": [
+
+        ]
+      }
+
+
     ]
-  }
+  })
+
+
+
+
+
+
 
 
 
@@ -44,16 +56,25 @@ function App() {
             <MainPage />
           </Route>
           <Route path="/QuizCreator">
-            <QuizCreator />
+            <counterContext.Provider value={[questionCounter, setquestionCounter, choiceCounter, setchoiceCounter, quizData, setquizData]}>
+              <toogleData.Provider value={[toogleQuestion, settoogleQuestion, toogleChoice, settoogleChoice]}>
+                <QuizCreator />
+              </toogleData.Provider>
+            </counterContext.Provider>
+
           </Route>
           <Route path="/Choice">
-            <counterContext.Provider value={[questionCounter, setquestionCounter, choiceCounter, setchoiceCounter]}>
-              <Choice />
+            <counterContext.Provider value={[questionCounter, setquestionCounter, choiceCounter, setchoiceCounter, quizData, setquizData]}>
+              <toogleData.Provider value={[toogleQuestion, settoogleQuestion, toogleChoice, settoogleChoice]}>
+                <Choice />
+              </toogleData.Provider>
             </counterContext.Provider>
           </Route>
           <Route path="/Question">
-            <counterContext.Provider value={[questionCounter, setquestionCounter, choiceCounter, setchoiceCounter]}>
-              <Question />
+            <counterContext.Provider value={[questionCounter, setquestionCounter, choiceCounter, setchoiceCounter, quizData, setquizData]}>
+              <toogleData.Provider value={[toogleQuestion, settoogleQuestion, toogleChoice, settoogleChoice]}>
+                <Question />
+              </toogleData.Provider>
             </counterContext.Provider>
           </Route>
         </Switch>

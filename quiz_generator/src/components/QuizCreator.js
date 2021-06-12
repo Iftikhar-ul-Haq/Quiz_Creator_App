@@ -2,8 +2,8 @@ import React from 'react'
 import { Form, Col, Button, Container, Row, Table } from "react-bootstrap"
 import { renderIntoDocument } from 'react-dom/cjs/react-dom-test-utils.production.min'
 import { useHistory } from 'react-router'
-import Body_button from './BodyItems'
-
+import BodyItems from './BodyItems'
+import { toogleData } from "../App"
 
 export default function QuizCreator() {
     let quizTitle = React.createRef();
@@ -46,7 +46,7 @@ export default function QuizCreator() {
                 </Row>
             </Form>
             <h1 className="text-center">Questions</h1>
-            <Body_button />
+            <BodyItems />
             <div className="d-flex justify-content-end p-3">
 
                 <Button variant="light" className="mx-3 border" onClick={() => { history.push("/") }} >Cancel</Button>

@@ -1,11 +1,31 @@
-import React, { } from 'react'
+import React, { useContext } from 'react'
 import { Button, Table } from "react-bootstrap"
 import { useHistory } from 'react-router';
+import { toogleData } from "../App"
+
+import { counterContext } from "../App"
 
 export default function Body_button() {
+
+    const [questionCounter, setquestionCounter, choiceCounter, setchoiceCounter, quizData] = useContext(counterContext)
+    const [toogleQuestion, settoogleQuestion, toogleChoice, settoogleChoice] = useContext(toogleData)
+
+    let questionData = {
+        "questionText": "",
+        "type": "",
+        "points": "",
+        "choice": [
+
+        ]
+
+    }
+
+
+
+
     const history = useHistory();
 
-    if (1) {
+    if (toogleQuestion) {
         return (
             <div>
                 <div className="border  m-3 d-flex justify-content-center align-items-center" style={{ height: "500px" }}>
@@ -53,6 +73,10 @@ export default function Body_button() {
                         </tr>
                     </tbody>
                 </Table>
+                <Button primary onClick={() => {
+                    history.push("/Question");
+                    quizData.question[questionCounter] = questionData
+                }} >Add Questions </Button>
             </div>
         );
     }

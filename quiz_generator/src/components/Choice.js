@@ -2,20 +2,37 @@ import React, { useContext } from 'react'
 import { Form, Row, Button, Col } from 'react-bootstrap'
 import { useHistory } from 'react-router';
 import { counterContext } from "../App"
+import { toogleData } from "../App"
 
 let choiceText = React.createRef();
 let correct = React.createRef();
 let choiceData = {
     "choiceText": "",
-    "Correct": ""
+    "Correct": false
 }
 
 
 export default function Choice() {
-    const [questionCounter, setquestionCounter, choiceCounter, setchoiceCounter] = useContext(counterContext)
+    const [toogleQuestion, settoogleQuestion, toogleChoice, settoogleChoice] = useContext(toogleData)
+
+    const [questionCounter, setquestionCounter, choiceCounter, setchoiceCounter, quizData, setquizData] = useContext(counterContext)
     const history = useHistory();
 
+    function addChoice(e) {
 
+        settoogleChoice(false)
+        choiceData.choiceText = choiceText.current.value;
+        quizData.question[questionCounter].choice[choiceCounter] = choiceData
+        setchoiceCounter((choiceCounter) => choiceCounter = choiceCounter + 1)
+
+
+        choiceData = {
+            "choiceText": "",
+            "Correct": false
+        }
+
+
+    }
 
 
 
@@ -58,7 +75,3 @@ export default function Choice() {
     )
 }
 
-function addChoice(e) {
-    choiceData.choiceText = choiceText.current.value;
-    console.log(choiceData)
-}
