@@ -28,9 +28,12 @@ export default function Question() {
 
 
 
+
+
     const history = useHistory()
 
     function questionCreator() {
+        setchoiceCounter(0)
         console.log(quizData)
         questionData.questionText = questionText.current.value
         questionData.points = points.current.value
@@ -56,7 +59,7 @@ export default function Question() {
                 <Row>
                     <Form.Group>
 
-                        <Form.Control ref={questionText} onChange={(e) => { quizData.question[questionCounter].questionText = questionText.current.value; console.log(quizData) }} type="text" />
+                        <Form.Control ref={questionText} onChange={(e) => { quizData.question[questionCounter].questionText = e.target.value; console.log(quizData) }} type="text" />
                     </Form.Group>
                 </Row>
                 <Row className="my-2">
@@ -68,7 +71,7 @@ export default function Question() {
                             label="Single Choice"
                             onChange={(e) => {
                                 if (e.target.value == "on") {
-                                    quizData.question[questionCounter].type = "single Choice"
+                                    questionData.type = "single Choice"
 
                                 }
                             }}
@@ -80,7 +83,7 @@ export default function Question() {
                             label="Multiple Choice"
                             onChange={(e) => {
                                 if (e.target.value == "on") {
-                                    quizData.question[questionCounter].type = "Multiple Choice"
+                                    questionData.type = "Multiple Choice"
 
                                 }
                             }}

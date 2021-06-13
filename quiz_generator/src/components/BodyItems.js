@@ -7,7 +7,7 @@ import { counterContext } from "../App"
 
 export default function Body_button() {
 
-    const [questionCounter, setquestionCounter, choiceCounter, setchoiceCounter, quizData] = useContext(counterContext)
+    const [questionCounter, setquestionCounter, choiceCounter, setchoiceCounter, quizData, setquizData] = useContext(counterContext)
     const [toogleQuestion, settoogleQuestion, toogleChoice, settoogleChoice] = useContext(toogleData)
 
     let questionData = {
@@ -19,6 +19,18 @@ export default function Body_button() {
         ]
 
     }
+    const questionTable = quizData.question.map((questions) => {
+        let length = questions.choice.length
+        return (
+            <tr>
+                <td>{questions.questionText}</td>
+                <td>{questions.type}</td>
+                <td>{length}</td>
+                <td>{questions.points}</td>
+
+            </tr>
+        );
+    })
 
 
 
@@ -47,30 +59,18 @@ export default function Body_button() {
                 <Table striped bordered hover >
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Username</th>
+
+                            <th>Text</th>
+                            <th>Type</th>
+                            <th>Coice</th>
+                            <th>Points</th>
+                            <th>Actions</th>
+
+
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td colSpan="2">Larry the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
+                        {questionTable}
                     </tbody>
                 </Table>
                 <Button primary onClick={() => {
