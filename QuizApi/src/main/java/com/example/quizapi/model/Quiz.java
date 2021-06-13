@@ -4,26 +4,21 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
+@NoArgsConstructor
 @Data
 @Entity
-@NoArgsConstructor
-public class Question {
+public class Quiz {
     @Id
     @GeneratedValue
-    private Long id;
-    String questionText;
-    String type;
-    String points;
-
+    Long id;
+    private String title;
+    private String totalPoints;
+    private String timeAllowed;
+    private String deadline;
 
     @OneToMany(cascade={CascadeType.ALL})
-    Set<Choice> choice;
-
-
-
+    Set<Question> question;
 
 }

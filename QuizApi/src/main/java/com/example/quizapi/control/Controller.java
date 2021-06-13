@@ -1,9 +1,9 @@
 package com.example.quizapi.control;
 
-import com.example.quizapi.model.Question;
-import com.example.quizapi.service.QuestionService;
+
+import com.example.quizapi.model.Quiz;
+import com.example.quizapi.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,20 +12,20 @@ import org.springframework.web.bind.annotation.RestController;
 public class Controller {
 
     @Autowired
-    QuestionService questionService;
+    QuizService quizService;
 
 
 
 
-@PostMapping("/questions")
-    public Question saveQuestion(@RequestBody Question question){
-      return questionService.saveQuestion(question);
+@PostMapping("/quiz")
+    public Quiz saveQuestion(@RequestBody Quiz quiz){
+      return quizService.saveQuiz(quiz);
 }
 
-@GetMapping("/questions")
-    public Iterable<Question> getQuestion(){
-    return questionService.getAllQuestion();
-}
+//@GetMapping("/questions")
+//    public Iterable<Quiz> getQuestion(){
+//    return questionService.getAllQuestion();
+//}
 
 
 
