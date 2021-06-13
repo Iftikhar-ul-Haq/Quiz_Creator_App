@@ -1,12 +1,12 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Form, Col, Button, Container, Row, Table } from "react-bootstrap"
 import { renderIntoDocument } from 'react-dom/cjs/react-dom-test-utils.production.min'
 import { useHistory } from 'react-router'
 import BodyItems from './BodyItems'
 
 import { toogleData } from "../App"
-
 import { counterContext } from "../App"
+
 
 export default function QuizCreator() {
 
@@ -18,6 +18,14 @@ export default function QuizCreator() {
     let timeAllowed = React.createRef();
     let deadline = React.createRef();
 
+    useEffect(() => {
+        quizTitle.current.value = quizData.title
+        totalPoints.current.value = quizData.totalPoints
+        timeAllowed.current.value = quizData.timeAllowed
+        deadline.current.value = quizData.deadline
+    })
+
+
     const history = useHistory()
     return (
         <div className="border" >
@@ -26,28 +34,28 @@ export default function QuizCreator() {
                 <Row className="my-3">
 
                     <Form.Label>Quiz Title</Form.Label>
-                    <Form.Control ref={quizTitle} onChange={(e) => { console.log(e.target.value) }} type="Text" placeholder="Enter Quiz Title" />
+                    <Form.Control ref={quizTitle} onChange={(e) => { quizData.title = e.target.value; console.log(quizData) }} type="Text" placeholder="Enter Quiz Title" />
 
                 </Row>
 
                 <Row className="my-3">
 
                     <Form.Label>Total Points</Form.Label>
-                    <Form.Control ref={totalPoints} type="Text" placeholder="Enter the points of the Quiz" />
+                    <Form.Control ref={totalPoints} type="Text" onChange={(e) => { quizData.totalPoints = e.target.value; console.log(quizData) }} placeholder="Enter the points of the Quiz" />
 
                 </Row>
                 <Row className="my-3">
                     <Col>
 
                         <Form.Label>Time Allowed (minutes)</Form.Label>
-                        <Form.Control ref={timeAllowed} type="text" placeholder="" />
+                        <Form.Control ref={timeAllowed} onChange={(e) => { quizData.timeAllowed = e.target.value; console.log(quizData) }} type="text" placeholder="" />
 
                     </Col>
 
                     <Col >
 
                         <Form.Label>Deadline</Form.Label>
-                        <Form.Control ref={deadline} type="Date" />
+                        <Form.Control ref={deadline} type="Date" onChange={(e) => { quizData.deadline = e.target.value; console.log(quizData) }} />
 
                     </Col>
                 </Row>

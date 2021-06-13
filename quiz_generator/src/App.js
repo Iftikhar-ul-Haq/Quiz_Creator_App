@@ -51,9 +51,12 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route exact path="/">
+            <counterContext.Provider value={[questionCounter, setquestionCounter, choiceCounter, setchoiceCounter, quizData, setquizData]}>
+              <toogleData.Provider value={[toogleQuestion, settoogleQuestion, toogleChoice, settoogleChoice]}>
 
-
-            <MainPage />
+                <MainPage />
+              </toogleData.Provider>
+            </counterContext.Provider>
           </Route>
           <Route path="/QuizCreator">
             <counterContext.Provider value={[questionCounter, setquestionCounter, choiceCounter, setchoiceCounter, quizData, setquizData]}>
