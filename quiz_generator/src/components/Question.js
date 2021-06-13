@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Form, Row, Col, Button } from 'react-bootstrap'
 import { useHistory } from 'react-router'
 import { counterContext } from "../App"
@@ -25,6 +25,9 @@ export default function Question() {
         ]
 
     }
+
+
+
     const history = useHistory()
 
     function questionCreator() {
@@ -38,6 +41,14 @@ export default function Question() {
 
     }
 
+    useEffect(() => {
+        questionText.current.value = quizData.question[questionCounter].questionText;
+        points.current.value = quizData.question[questionCounter].points;
+
+
+
+    })
+
     return (
         <div className="border p-3">
             <h1>Question</h1>
@@ -45,7 +56,7 @@ export default function Question() {
                 <Row>
                     <Form.Group>
 
-                        <Form.Control ref={questionText} type="textarea" />
+                        <Form.Control ref={questionText} onChange={(e) => { quizData.question[questionCounter].questionText = questionText.current.value; console.log(quizData) }} type="text" />
                     </Form.Group>
                 </Row>
                 <Row className="my-2">
@@ -57,7 +68,7 @@ export default function Question() {
                             label="Single Choice"
                             onChange={(e) => {
                                 if (e.target.value == "on") {
-                                    questionData.type = "single Choice"
+                                    quizData.question[questionCounter].type = "single Choice"
 
                                 }
                             }}
@@ -69,7 +80,7 @@ export default function Question() {
                             label="Multiple Choice"
                             onChange={(e) => {
                                 if (e.target.value == "on") {
-                                    questionData.type = "Multiple Choice"
+                                    quizData.question[questionCounter].type = "Multiple Choice"
 
                                 }
                             }}
@@ -78,7 +89,7 @@ export default function Question() {
                     </Col>
                     <Col>
                         <Form.Label>Points</Form.Label>
-                        <Form.Control ref={points} type="text" />
+                        <Form.Control ref={points} onChange={(e) => { quizData.question[questionCounter].points = points.current.value; console.log(quizData) }} type="text" />
                     </Col>
                 </Row>
             </Form>
