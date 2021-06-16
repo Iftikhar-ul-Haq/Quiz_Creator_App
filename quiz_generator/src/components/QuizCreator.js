@@ -10,6 +10,22 @@ import { counterContext } from "../App"
 
 export default function QuizCreator() {
 
+    const axios = require('axios');
+
+    function pushData() {
+        axios.post('http://localhost:8080/quiz', quizData)
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        alert(quizData)
+
+    }
+
+
+
     const [questionCounter, setquestionCounter, choiceCounter, setchoiceCounter, quizData, setquizData] = useContext(counterContext)
     const [toogleQuestion, settoogleQuestion, toogleChoice, settoogleChoice] = useContext(toogleData)
 
@@ -71,6 +87,7 @@ export default function QuizCreator() {
 
                     console.log(quizTitle.current.value, totalPoints.current.value, timeAllowed.current.value, deadline.current.value);
                     history.push("/");
+                    pushData()
                 }}>Create Quiz</Button>
 
             </div>

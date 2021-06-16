@@ -14,6 +14,8 @@ import QuizCreator from './components/QuizCreator';
 export const counterContext = React.createContext();
 export const toogleData = React.createContext();
 function App() {
+
+
   const [questionCounter, setquestionCounter] = useState(0)
   const [choiceCounter, setchoiceCounter] = useState(0)
   const [toogleQuestion, settoogleQuestion] = useState(true)
@@ -35,6 +37,7 @@ function App() {
 
     ]
   })
+
 
 
 
