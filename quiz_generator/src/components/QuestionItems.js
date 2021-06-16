@@ -40,7 +40,7 @@ export default function QuestionItems() {
     }
     else {
         return (
-            <div>
+            <div className="text-center">
                 <Table striped bordered hover>
                     <thead>
                         <tr>

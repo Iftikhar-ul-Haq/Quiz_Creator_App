@@ -1,7 +1,8 @@
 import React, { useContext } from 'react'
 import { Button, Table } from "react-bootstrap"
 import { useHistory } from 'react-router';
-import { toogleData } from "../App"
+import { toogleData } from "../App";
+import deleteimage from "./delete.png"
 
 import { counterContext } from "../App"
 
@@ -19,7 +20,9 @@ export default function Body_button() {
         ]
 
     }
+
     const questionTable = quizData.question.map((questions) => {
+
         let length = questions.choice.length
         return (
             <tr>
@@ -27,7 +30,7 @@ export default function Body_button() {
                 <td>{questions.type}</td>
                 <td>{length}</td>
                 <td>{questions.points}</td>
-
+                <td><img src={deleteimage} style={{ width: "20px" }} /></td>
             </tr>
         );
     })
@@ -55,7 +58,7 @@ export default function Body_button() {
     }
     else {
         return (
-            <div>
+            <div className="text-center">
                 <Table striped bordered hover >
                     <thead>
                         <tr>

@@ -34,7 +34,7 @@ export default function Question() {
 
     function questionCreator() {
         setchoiceCounter(0)
-        console.log(quizData)
+
         questionData.questionText = questionText.current.value
         questionData.points = points.current.value
         questionData.choice = quizData.question[questionCounter].choice
@@ -45,8 +45,14 @@ export default function Question() {
     }
 
     useEffect(() => {
-        questionText.current.value = quizData.question[questionCounter].questionText;
-        points.current.value = quizData.question[questionCounter].points;
+        if (quizData.question[questionCounter].questionText == undefined) {
+            questionText.current.value = ""
+            points.current.value = ""
+        }
+        else {
+            questionText.current.value = quizData.question[questionCounter].questionText;
+            points.current.value = quizData.question[questionCounter].points;
+        }
 
 
 

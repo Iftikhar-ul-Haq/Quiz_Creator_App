@@ -6,6 +6,32 @@ import { toogleData } from "../App"
 
 import { counterContext } from "../App"
 export default function Main_page() {
+    function emptyData() {
+        setquizData({
+            "title": "",
+            "totalPoints": "",
+            "timeAllowed": "",
+            "deadline": "",
+            "question": [
+
+
+                {
+                    "choice": [
+
+                    ]
+                }
+
+
+            ]
+        }
+
+        )
+
+        setquestionCounter(0)
+        setchoiceCounter(0)
+        settoogleQuestion(true)
+
+    }
 
     const history = useHistory();
     const [questionCounter, setquestionCounter, choiceCounter, setchoiceCounter, quizData, setquizData] = useContext(counterContext)
@@ -34,7 +60,7 @@ export default function Main_page() {
                     </tbody>
                 </Table>
 
-                <Button className="primary" onClick={() => { history.push("/QuizCreator") }}>i am main page</Button>
+                <Button className="primary" onClick={() => { history.push("/QuizCreator"); emptyData() }}>Create Quiz</Button>
             </div>
         </div>
     );

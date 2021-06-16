@@ -20,7 +20,8 @@ export default function QuizCreator() {
             .catch(function (error) {
                 console.log(error);
             });
-        alert(quizData)
+
+        console.log(quizData)
 
     }
 
@@ -50,28 +51,28 @@ export default function QuizCreator() {
                 <Row className="my-3">
 
                     <Form.Label>Quiz Title</Form.Label>
-                    <Form.Control ref={quizTitle} onChange={(e) => { quizData.title = e.target.value; console.log(quizData) }} type="Text" placeholder="Enter Quiz Title" />
+                    <Form.Control ref={quizTitle} onChange={(e) => { quizData.title = e.target.value; }} type="Text" placeholder="Enter Quiz Title" />
 
                 </Row>
 
                 <Row className="my-3">
 
                     <Form.Label>Total Points</Form.Label>
-                    <Form.Control ref={totalPoints} type="Text" onChange={(e) => { quizData.totalPoints = e.target.value; console.log(quizData) }} placeholder="Enter the points of the Quiz" />
+                    <Form.Control ref={totalPoints} type="Text" onChange={(e) => { quizData.totalPoints = e.target.value; }} placeholder="Enter the points of the Quiz" />
 
                 </Row>
                 <Row className="my-3">
                     <Col>
 
                         <Form.Label>Time Allowed (minutes)</Form.Label>
-                        <Form.Control ref={timeAllowed} onChange={(e) => { quizData.timeAllowed = e.target.value; console.log(quizData) }} type="text" placeholder="" />
+                        <Form.Control ref={timeAllowed} onChange={(e) => { quizData.timeAllowed = e.target.value; }} type="text" placeholder="" />
 
                     </Col>
 
                     <Col >
 
                         <Form.Label>Deadline</Form.Label>
-                        <Form.Control ref={deadline} type="Date" onChange={(e) => { quizData.deadline = e.target.value; console.log(quizData) }} />
+                        <Form.Control ref={deadline} type="Date" onChange={(e) => { quizData.deadline = e.target.value; }} />
 
                     </Col>
                 </Row>
@@ -85,7 +86,6 @@ export default function QuizCreator() {
 
                 <Button primary onClick={(e) => {
 
-                    console.log(quizTitle.current.value, totalPoints.current.value, timeAllowed.current.value, deadline.current.value);
                     history.push("/");
                     pushData()
                 }}>Create Quiz</Button>
